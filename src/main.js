@@ -9,51 +9,51 @@ Vue.config.productionTip = false
 Vue.use(VueResourse);
 
 //引入公共JS
-import jquery from "./assets/js/jquery-2.1.1.min"
+import jquery from "./assets/js/jquery-2.1.1.min.js"
 Vue.prototype.jquery = jquery
 Vue.config.proautionTip = false
 
-import util from "./assets/js/util"
+import util from "./assets/js/util.js"
 Vue.prototype.util = util
 Vue.config.proautionTip = false
 
 
 //全局组件
 import Sidebar from './components/publicCop/Sidebar'
-Vue.component('my-Sidebar',Sidebar)
+Vue.component('my-Sidebar', Sidebar)
 
 import GroupData from './components/GroupBodyCop/GroupData'
-Vue.component('my-Jy',GroupData)
+Vue.component('my-Jy', GroupData)
 
 import GroupXcp from './components/GroupBodyCop/GroupXcp'
-Vue.component('my-Xcp',GroupXcp)
+Vue.component('my-Xcp', GroupXcp)
 
 import menu2 from './components/publicCop/menu2'
-Vue.component('menu2',menu2)
+Vue.component('menu2', menu2)
 
 import menu3 from './components/publicCop/menu3'
-Vue.component('menu3',menu3)
+Vue.component('menu3', menu3)
 
 import menu3_1 from './components/publicCop/menu3_1'
-Vue.component('menu3_1',menu3_1)
+Vue.component('menu3_1', menu3_1)
 
 import content1 from './components/publicCop/content1'
-Vue.component('content1',content1)
+Vue.component('content1', content1)
 
 import content2 from './components/publicCop/content2'
-Vue.component('content2',content2)
+Vue.component('content2', content2)
 
 import InKfCop from './components/InBodyCop/InKfCop'
-Vue.component('InKfCop',InKfCop)
+Vue.component('InKfCop', InKfCop)
 
 import InXqCop from './components/InBodyCop/InXqCop'
-Vue.component('InXqCop',InXqCop)
+Vue.component('InXqCop', InXqCop)
 
 import pagebar from './components/publicCop/Fy'
-Vue.component('page-bar',pagebar)
+Vue.component('page-bar', pagebar)
 
 import Map from './components/publicCop/map'
-Vue.component('Map',Map)
+Vue.component('Map', Map)
 
 //轮播图
 import VueAwesomeSwiper from 'vue-awesome-swiper'

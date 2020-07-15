@@ -29,40 +29,35 @@ export default {
     Propaganda,
     Djdt,
     Company,
-    Service,
+    Service
   },
-  data () {
+  data() {
     return {
-      ip: ip.ip,
-    }
-  },
-  created () {
-
+      ip: ip.ip
+    };
   },
   methods: {
-    getMenu3 (newsClassID, currentPage, pageSize) {
-
-      var params = { "newsClassID": newsClassID, "currentPage": currentPage, "pageSize": pageSize };
+    getMenu3(newsClassID, currentPage, pageSize) {
+      var params = {
+        newsClassID: newsClassID,
+        currentPage: currentPage,
+        pageSize: pageSize
+      };
       var url = ip.ip + "/news/getDataList";
       var data = ajaxSpringBeanCommonFunction(url, params);
-      // console.log(JSON.stringify(data));
-      this.total = data.total;//当前条数
-      this.totalPages = data.totalPages;//总页数
+      this.total = data.total; //当前条数
+      this.totalPages = data.totalPages; //总页数
       return data.rows;
-
     },
-    getMenu2 (m1) {   //请求数据
-
+    getMenu2(m1) {
+      //请求数据
       var url = ip.ip + "/Index/getParemtNavList";
-      var params = { "parentId": m1 };
+      var params = { parentId: m1 };
       var data = ajaxSpringBeanCommonFunction(url, params);
       return data;
-
-    },
-
-  },
-
-}
+    }
+  }
+};
 </script>
 
 <style scoped>

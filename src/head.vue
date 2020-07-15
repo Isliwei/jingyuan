@@ -1,7 +1,7 @@
 <template>
   <div class="head">
     <div class="headTb">
-      <img src="./assets/imgs/logo.png">
+      <img src="./assets/imgs/logo.png" />
     </div>
     <div class="headDh">
       <router-link to="/" tag="li">首页</router-link>
@@ -31,48 +31,35 @@
   </div>
 </template>
 <script>
-import { ajaxSpringBeanCommonFunction } from "./assets/js/util.js"
+import { ajaxSpringBeanCommonFunction } from "./assets/js/util.js";
 import ip from "./assets/js/api.js";
 
-
 export default {
-
-  data () {
+  data() {
     return {
-      nav: [],
-    }
+      nav: []
+    };
   },
   watch: {
-    $route (to, from) {
+    $route(to, from) {
       if (to.name === from.name) {
-        this.$router.push({ name: 'F5' });
+        this.$router.push({ name: "F5" });
       }
     }
   },
-  created () {
-    this.postData()
+  created() {
+    this.postData();
   },
   methods: {
-    postData () {   //请求数据
+    postData() {
+      //请求数据
       var data = ajaxSpringBeanCommonFunction(ip.ip + "/Index/getNav", {});
       this.nav = data;
-    },
-    reload () {
-      //    window.setTimeout(function (){
-      //      window.location.reload();
-      //    },500);
-    },
-  },
-
-}
-
+    }
+  }
+};
 </script>
 <style scoped>
-/* @media screen and (min-width:960px) and (max-width:1200px){
-    body{
-        background:yellow;
-    }
-} */
 .head {
   width: 100%;
   height: 100px;
