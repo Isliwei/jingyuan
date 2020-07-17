@@ -168,7 +168,7 @@ ul li:nth-child(2){
 
 .scrolling{
   width: 100%;
-
+  overflow: hidden;
   height: 420px;
 }
 .swiper-container {

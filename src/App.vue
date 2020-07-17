@@ -18,4 +18,10 @@ export default {
   text-align: left;
   color: #2c3e50;
 }
+
+html,body{
+  width:100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
 </style>

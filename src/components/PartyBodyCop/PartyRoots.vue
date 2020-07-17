@@ -61,8 +61,10 @@ export default {
 
 <style scoped>
 .PartyRoots{
-  width: 37%;
+  width: 40%;
   float: right;
+  box-sizing: border-box;
+  padding: 0 2%;
 }
 .PartyBt ul{
   height: 45px;

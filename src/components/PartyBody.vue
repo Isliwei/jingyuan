@@ -70,19 +70,20 @@ export default {
 <style scoped>
 .PartyBody{
   flex-direction: column;
-  width: 80%;
-  min-width: 1440px;
+  width: 100%;
   margin: auto;
-  margin-top: 20px;
 }
 .PartyBodykz{
   width: 60%;
   float: left;
+  box-sizing: border-box;
+  padding-left: 2%;
 }
 .PartyBodykz2{
   float: left;
-  width: 72%;
+  width: 60%;
   margin-top: 70px;
-  padding-bottom: 120px;
+  box-sizing: border-box;
+  padding:0 2% 70px 2%;
 }
 </style>

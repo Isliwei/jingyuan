@@ -2,7 +2,7 @@
 let dev = process.env.NODE_ENV
 let ip = ''
 if (dev === 'development') { //开发环境
-  ip = 'http://10.62.27.161:8080';
+  ip = 'http://localhost:8080';
 } else { //正式环境
   ip = 'http://10.62.27.161:8080';
 }

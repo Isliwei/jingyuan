@@ -1,11 +1,15 @@
 <template>
   <div class="indexBody">
-    <News-Center></News-Center>
-    <div class="copKz">
-      <Group></Group>
-      <Propaganda></Propaganda>
-      <Djdt></Djdt>
+
+    <div class="line-1">
+      <News-Center></News-Center>
+      <div class="copKz">
+        <Group></Group>
+        <Propaganda></Propaganda>
+        <Djdt></Djdt>
+      </div>
     </div>
+
     <div class="copKz2">
       <Company></Company>
       <Service></Service>
@@ -61,25 +65,27 @@ export default {
 </script>
 
 <style scoped>
+.line-1{
+  width: 100%;
+  display: inline-flex;
+  justify-content: flex-start;
+  margin-top: 100px;
+}
+
 .indexBody {
-  width: 80%;
-  min-width: 1440px;
-  margin: auto;
+  width: 100%;
   display: flex;
-  margin-top: 35px;
   flex-direction: column;
+  margin-top: 35px;
+  box-sizing: border-box;
 }
 .copKz {
   flex-direction: row;
   width: 50%;
-  float: right;
-  position: relative;
-  bottom: 405px;
-  left: 750px;
 }
 .copKz2 {
+  width: 100%;
   margin-top: -390px;
-  flex-direction: column;
 }
 li {
   height: 26px;

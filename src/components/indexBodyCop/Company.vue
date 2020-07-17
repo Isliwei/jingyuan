@@ -4,7 +4,7 @@
       <p class="CnPbt">入驻企业</p>
       <p class="EgPbt" style="top:-10px;">SHI XIN WEN CHUANG</p>
     </div>
-    <swiper :options="swiperOption" ref="mySwiper">
+    <!-- <swiper :options="swiperOption" ref="mySwiper">
       <div class="swiper-slide" v-for="v in menu3" :key="v.i">
         <router-link
           class="Cnpbta"
@@ -18,16 +18,16 @@
           </div>
         </router-link>
       </div>
-    </swiper>
+    </swiper> -->
   </div>
 </template>
 <script>
-import ip from "../../assets/js/api.js"
-import 'swiper/dist/css/swiper.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import ip from "../../assets/js/api.js";
+import "swiper/dist/css/swiper.css";
+import { swiper, swiperSlide } from "vue-awesome-swiper";
 
 export default {
-  data () {
+  data() {
     return {
       //轮播配置
       swiperOption: {
@@ -38,46 +38,46 @@ export default {
         autoplay: false,
         speed: 500,
         slidesPerView: 3,
-        centeredSlides: true,
+        centeredSlides: true
       },
       ip: ip.ip,
       menu3: [],
       m1: "8abe94755f7ad21b015f7ada53ed0001",
-      m2: "8abe94755ffc68f4015ffc76f2ff0004",
-    }
+      m2: "8abe94755ffc68f4015ffc76f2ff0004"
+    };
   },
-  created () {
+  created() {
     this.menu3 = this.$parent.getMenu3(this.m2, 1, 10);
   },
   watch: {
-    $route (to, from) {
+    $route(to, from) {
       if (to.name === from.name) {
-        this.$router.push({ name: 'F5' });
+        this.$router.push({ name: "F5" });
       }
-      console.log('route', $route);
+      console.log("route", $route);
     }
   },
   methods: {
-    reload () {
+    reload() {
       window.location.reload();
-    },
-  },
-}
+    }
+  }
+};
 </script>
-
 
 <style scoped>
 .Company {
   width: 100%;
-  min-width: 1440px;
-  margin: auto;
   display: flex;
   margin-top: 50px;
   flex-direction: column;
+  box-sizing: border-box;
 }
 .CompanyBt {
   width: 100%;
   height: 90px;
+  position: relative;
+  top: -240px;
 }
 .CompanyBt p {
   text-align: center;
@@ -139,15 +139,11 @@ li {
 }
 .scrolling {
   width: 100%;
-  max-width: 1440px;
-  min-width: 1440px;
   height: 335px;
 }
 .swiper-container {
-  width: 99%;
-  min-width: 1440px;
+  width: 100%;
   height: 335px;
-  margin-left: 10px;
 }
 .swiper-slide {
   background-size: 100%;

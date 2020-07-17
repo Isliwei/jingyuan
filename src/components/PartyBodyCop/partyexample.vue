@@ -54,10 +54,12 @@ export default {
 
 <style scoped>
 .partyexample{
-  width: 25%;
+  width: 40%;
   float: right;
   height: 400px;
   margin-top: 70px;
+  box-sizing: border-box;
+  padding: 0 2%;
 }
 .PartyBt ul{
   height: 45px;

@@ -53,10 +53,9 @@ export default {
 <style scoped>
 .Service{
   width: 100%;
-  min-width: 1440px;
   margin: auto;
   display: flex;
-  margin-top: 30px;
+  margin-top: 260px;
   flex-direction:column;
   padding-bottom: 120px;
 }
@@ -91,7 +90,8 @@ export default {
 .ServiceTx{
   width: 100%;
   display: flex;
-  margin-left: 10px;
+  box-sizing: border-box;
+  padding: 0 10px;
 }
 .Tx{
   flex: 1;

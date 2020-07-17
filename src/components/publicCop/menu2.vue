@@ -1,5 +1,5 @@
 <template>
-  <div class="menu2">
+  <div>
     <div class="newsSidebarBody">
       <div v-for="(item,index) in bT" :key="item.s" class="newsSiBt">
         <ul :class="item.ID==m2Id ? 'newsSiBt_click':''">

@@ -4,9 +4,7 @@
 
       <div class="newsSiBt" v-for="item in bT" :key="item.s">
           <ul @click="getMenu3(item)">
-            
             <div>{{item.ClassName}}</div>
-
           </ul>
           
       </div>

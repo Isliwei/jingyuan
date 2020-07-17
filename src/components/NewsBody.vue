@@ -2,7 +2,7 @@
   <div class="NewsBody">
     <imgHead></imgHead>
     <div class="NewsCop">
-      <menu2 :m2Id.sync="m2Id"></menu2>
+      <menu2 :m2Id.sync="m2Id" class="menu2"></menu2>
       <component :is="cnm" :m2Id="m2Id"></component>
     </div>
   </div>
@@ -80,7 +80,6 @@ export default {
       }
       this.total = data.total;//当前条数
       this.totalPages = data.totalPages;//总页数
-      console.log(111111, data);
       data.rows.map(item => {
         item.content = item.content.replace(/<img src="/g, `<img src=\"${ip.ip}`);
       })
@@ -111,11 +110,15 @@ export default {
 </script>
 
 <style scoped>
+.NewsBody{
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .NewsCop {
-  width: 80%;
-  min-width: 1440px;
-  margin: auto;
-  margin-top: 20px;
+  width: 100%;
+  min-height: 1000px;
+  padding-top: 20px;
 }
 </style>
 

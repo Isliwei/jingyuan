@@ -105,7 +105,6 @@ export default {
 }
 .forTest{
   width: 100%;
-  min-width: 1213px;
   height: 260px;
 }
 .newsSidebarTest p{

@@ -3,13 +3,9 @@
     <div>
       <p>宣传片</p>
     </div>
-       <!-- <video :src="videoUrl"  controls autobuffer style="margin: auto; position: absolute; left:10px; bottom: 0px; width: 45%; max-width: 100%; max-height: 100%;min-height: 185px;">
-       </video> -->
-
-   <video controls autobuffer style="margin: auto; position: absolute; left:10px;width: 45%; max-width: 100%; max-height: 185px;;min-height: 185px;">
+   <video controls autobuffer style="margin: auto;width: 100%; max-height: 185px;;min-height: 185px;">
      <source :src="videoUrl" type="video/mp4"> 
    </video>
-  
   </div>
 </template>
 

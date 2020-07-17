@@ -53,6 +53,7 @@ export default {
   //请求数据
   postData() {
    this.json = ajaxSpringBeanCommonFunction(this.burl, this.params);
+   console.log(8888,this.json)
    if (this.json.rows) {
     for (var i = 0; i < this.json.rows.length; i++) {
      this.url[i] = ip.ip + "/" + this.json.rows[i].imgUrl;
@@ -66,12 +67,10 @@ export default {
 <style scoped>
 .scrolling {
  width: 100%;
- min-width: 1470px;
  height: 530px;
 }
 .swiper-container {
  width: 100%;
- min-width: 1440px;
  height: 530px;
 }
 .swiper-slide {

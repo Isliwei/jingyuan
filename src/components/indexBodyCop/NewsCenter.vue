@@ -71,7 +71,6 @@ export default {
   },
   created () {
     this.menu3 = this.$parent.getMenu3(this.m2, 1, 7);
-    // console.log("menu3",this.menu3);
   },
   computed: {
     swiper () {
@@ -87,11 +86,10 @@ export default {
 
 <style scoped>
 .newsCenter {
-  width: 50%;
-  height: 405px;
+  width: 48%;
+  height: 480px;
   flex-direction: column;
-  position: relative;
-  left: 10px;
+  margin-right: 2%;
 }
 .newsCenterImg {
   width: 100%;
@@ -100,17 +98,16 @@ export default {
 .newsImgMst {
   display: flex;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 15px;
+  padding: 5px;
   position: relative;
   top: 358px;
   z-index: 2;
 }
+
 .newsCenterImg li {
-  display: inline-block;
   text-align: left;
   color: aliceblue;
   font-size: 14px;
-  flex: 6;
 }
 .newsCenterTest {
   color: #121212;
@@ -118,7 +115,7 @@ export default {
   width: 96%;
   flex-direction: row;
   position: relative;
-  bottom: 110px;
+  bottom: 130px;
 }
 .newsTestli {
   width: 65%;
@@ -142,16 +139,12 @@ export default {
   top: 35px;
 }
 .scrolling {
-  width: 50%;
-  max-width: 720px;
-  min-width: 720px;
-  height: 405px;
+  width: 100%;
+  height: 390px;
 }
 .swiper-container {
   width: 100%;
-  max-width: 720px;
-  min-width: 720px;
-  height: 405px;
+  height: 390px;
 }
 .swiper-slide {
   background-size: 100%;
