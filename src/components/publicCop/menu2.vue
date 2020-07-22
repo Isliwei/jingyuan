@@ -1,15 +1,23 @@
 <template>
   <div>
     <div class="newsSidebarBody">
-      <div v-for="(item,index) in bT" :key="item.s" class="newsSiBt">
-        <ul :class="item.ID==m2Id ? 'newsSiBt_click':''">
+      <div v-for="(item, index) in bT" :key="item.s" class="newsSiBt">
+        <ul :class="item.ID == m2Id ? 'newsSiBt_click' : ''">
           <div
-            :class="['menulist_left',isclick == index?'newsSiBt_click':'']"
-            :style="`${item.childList && item.childList.length > 0 ? 'background-color: #fff; color: #000;' : ''}`"
-            @click="reload(item,index)"
+            :class="['menulist_left', isclick == index ? 'newsSiBt_click' : '']"
+            :style="
+              `${
+                item.childList && item.childList.length > 0
+                  ? 'background-color: #fff; color: #000;'
+                  : ''
+              }`
+            "
+            @click="reload(item, index)"
           >
-            <div>{{item.ClassName}}{{isclick}}=={{index}}</div>
-            <div :class="['cur-icon',isclick == index?'':'cur-black']">&gt;</div>
+            <div>{{ item.ClassName }}</div>
+            <div :class="['cur-icon', isclick == index ? '' : 'cur-black']">
+              &gt;
+            </div>
           </div>
           <!-- <router-link
             :to="{ name: 'Map', query:{ id:m1,m2:item.ID} }"
@@ -24,101 +32,106 @@
   </div>
 </template>
 <script>
-import { ajaxSpringBeanCommonFunction } from "../../assets/js/util.js"
-import ip from "../../assets/js/api.js"
+import { ajaxSpringBeanCommonFunction } from "../../assets/js/util.js";
+import ip from "../../assets/js/api.js";
 
 export default {
   props: {
     m2Id: String
   },
-  data () {
+  data() {
     return {
       bT: [],
       m1: "",
       m2: "",
-      isclick:0
+      isclick: 0
       // m2Id: ''
-    }
+    };
   },
   watch: {
-    $route (to, from) {
+    $route(to, from) {
       if (to.name === from.name) {
-        this.$router.push({ name: 'F5' });
+        this.$router.push({ name: "F5" });
       }
     }
   },
-  created () {
+  created() {
     this.getMenu2();
-    this.isclick = sessionStorage.getItem('menuIndex') || 0
+    this.isclick = sessionStorage.getItem("menuIndex") || 0;
   },
   methods: {
-    reload (item, index) {
+    reload(item, index) {
       this.isclick = index;
-      sessionStorage.setItem('menuIndex',index)
-      console.log(this.isclick,item,index)
-
-      this.$emit('update:m2Id', item.ID);
-      if (item.ClassName === '园区地图') {
+      sessionStorage.setItem("menuIndex", index);
+      this.$emit("update:m2Id", item.ID);
+      if (item.ClassName === "园区地图") {
         var url = ip.ip + "/Index/getParemtNavList";
-        var params = { "parentId": item.ID };
+        var params = { parentId: item.ID };
         var data = ajaxSpringBeanCommonFunction(url, params);
         item.childList = data;
         // this.$router.push({ name: 'NewsCenter', query: { id: this.m1, m2: data.length > 0 ? data[0].ID : '' } })
       } else {
-        this.$router.push({ name: 'NewsCenter', query: { id: this.m1, m2: item.ID } })
+        this.$router.push({
+          name: "NewsCenter",
+          query: { id: this.m1, m2: item.ID }
+        });
       }
     },
-    getMenu2 () {   //请求数据
+    getMenu2() {
+      //请求数据
       this.m1 = this.$route.query.id;
       this.m2 = this.$route.query.m2;
       var url = ip.ip + "/Index/getParemtNavList";
-      var params = { "parentId": this.$route.query.id };
+      var params = { parentId: this.$route.query.id };
       var data = ajaxSpringBeanCommonFunction(url, params);
       this.bT = data;
-      // console.log(111, this.bT)
       if (this.m2 == null) {
         if (data.length > 0) {
           this.m2 = data[0].ID;
           this.$route.query.m2 = this.m2;
-          // console.log('getMenu3 data', this.m2, this.$parent.currentPage, this.$parent.pageSize)
-          this.$parent.getMenu3(this.m2, this.$parent.currentPage, this.$parent.pageSize);
+          this.$parent.getMenu3(
+            this.m2,
+            this.$parent.currentPage,
+            this.$parent.pageSize
+          );
         }
       }
-      // if (data.length > 0) this.$emit('update:m2Id', data[0].ID);
     }
   }
-}
+};
 </script>
-
-
-
 
 <style scoped>
 .menulist_left {
-  width: 100%;
+  width: 80%;
   height: 40px;
   line-height: 40px;
-  padding-left: 10%;
   box-sizing: border-box;
   display: inline-flex;
-  justify-content: space-around;
   position: relative;
+  left: 20%;
+  overflow: hidden;
 }
-.cur-icon{
+.menulist_left div:first-child {
   position: relative;
+  left: 20px;
 }
-.cur-icon::after{
-  content: '';
+.cur-icon {
+  position: absolute;
+  right: 20px;
+}
+.cur-icon::after {
+  content: "";
   width: 20px;
   height: 20px;
-  border:1px dashed #fff;
+  border: 1px dashed #fff;
   position: absolute;
   left: -6px;
   top: 8px;
 }
 
-.cur-black::after{
-  border:1px dashed #999;
+.cur-black::after {
+  border: 1px dashed #999;
 }
 
 .newsSidebar {

@@ -5,54 +5,65 @@
         <ul
           class="SidebarBodyUl"
           v-if="item.ID != '8abe94755f766ecb015f76c83c8a0001'"
-          @click="getMenu3(item.ID);"
+          @click="getMenu3(item.ID)"
         >
-          <div>{{item.ClassName}}</div>
-          <img id="imgFz" src="../../assets/imgs/transition.png">
+          <div>{{ item.ClassName }}</div>
+          <img id="imgFz" src="../../assets/imgs/transition.png" />
         </ul>
         <transition>
-          <div v-if="classId == item.ID && item.ID != '8abe94755f766ecb015f76c83c8a0001'">
+          <div
+            v-if="
+              classId == item.ID &&
+                item.ID != '8abe94755f766ecb015f76c83c8a0001'
+            "
+          >
             <span v-for="v in menu3" :key="v.s">
               <li
                 @click="getProduce(v.ID)"
                 :title="v.ClassName"
-                :class="v.ID==isClick ? 'newsSiBt_click':''"
-              >{{v.ClassName}}</li>
+                :class="v.ID == isClick ? 'newsSiBt_click' : ''"
+              >
+                {{ v.ClassName }}
+              </li>
             </span>
           </div>
         </transition>
       </div>
       <div v-for="item in bT" :key="item.ID">
-        <a
-          style="color: black;"
+        <router-link
+          style="color:#000;"
           v-if="item.ID == '8abe94755f766ecb015f76c83c8a0001'"
-          :href="'/gIT#/gIT?id='+m1+'&m2='+item.ID"
-          @click="reload()"
+          :to="{
+            name: 'GroupIntroductionNews',
+            query: { id: m1, m2: item.ID }
+          }"
         >
-          <p class="Xcpp" :class="item.ID==m2 ? 'newsSiBt_click  ' :''">{{item.ClassName}}</p>
-        </a>
+          <p class="Xcpp" :class="item.ID == m2 ? 'newsSiBt_click  ' : ''">
+            {{ item.ClassName }}
+          </p>
+        </router-link>
       </div>
     </div>
     <div class="SidebarTest">
-      <component :is="cnm"></component>
+      <component :is="cnm" :content="menu3_v"></component>
     </div>
   </div>
 </template>
 
 <script>
-import { ajaxSpringBeanCommonFunction } from "../../assets/js/util.js"
-import ip from "../../assets/js/api.js"
-import GroupData from '../GroupBodyCop/GroupData'
+import { ajaxSpringBeanCommonFunction } from "../../assets/js/util.js";
+import ip from "../../assets/js/api.js";
+import GroupData from "../GroupBodyCop/GroupData";
 
 export default {
   components: {
     GroupData
   },
-  data () {
+  data() {
     return {
       bT: [],
       menu3: [],
-      cnm: 'my-Jy',
+      cnm: "my-Jy",
       classId: "",
       isNowPage: true,
       menu3_v: {},
@@ -60,34 +71,40 @@ export default {
       m2: this.$route.query.m2,
       m3: this.$route.query.m3,
       alist: [],
-      isClick: ''
-    }
+      isClick: "",
+      firstID: ""
+    };
   },
-  created () {
+  created() {
     this.getMenu2();
-    // console.log('ssss',this.$route);
   },
   methods: {
-    reload () {
+    reload() {
       window.location.reload();
     },
-    getProduce (theID) {
+    getProduce(theID) {
+      console.log("==", theID);
       var url = ip.ip + "/news/getDataList";
       var params = {
-        "newsClassID": theID,
-        "currentPage": 1,
-        "pageSize": 999
+        newsClassID: theID,
+        currentPage: 1,
+        pageSize: 999
       };
       var data = ajaxSpringBeanCommonFunction(url, params);
-      data.rows[0].content = data.rows[0].content.slice(0, 15) + ip.ip + data.rows[0].content.slice(15);
+      data.rows[0].content =
+        data.rows[0].content.slice(0, 15) +
+        ip.ip +
+        data.rows[0].content.slice(15);
       this.menu3_v = data;
+      console.log(this.menu3_v);
       this.cnm = "GroupData";
       this.isClick = theID;
       //    console.log('data',data);
     },
-    getMenu2 () {   //请求数据
+    getMenu2() {
+      //请求数据
       var url = ip.ip + "/Index/getParemtNavList";
-      var params = { "parentId": this.$route.query.id };
+      var params = { parentId: this.$route.query.id };
       var data = ajaxSpringBeanCommonFunction(url, params);
       this.bT = data;
       if (data.length > 0) {
@@ -96,17 +113,19 @@ export default {
         } else {
           this.getMenu3(this.m2);
         }
-
       }
     },
-    getMenu3 (newsClassID) {
+    getMenu3(newsClassID) {
+      console.log("===", newsClassID);
       this.classId = newsClassID;
       var currentPage = 1;
       var pageSize = 999;
-
       //		  var params = {"newsClassID":newsClassID,"currentPage":currentPage,"pageSize":pageSize};
-      var params = { "parentId": newsClassID };
-      var data = ajaxSpringBeanCommonFunction(`${ip.ip}/Index/getParemtNavList`, params);
+      var params = { parentId: newsClassID };
+      var data = ajaxSpringBeanCommonFunction(
+        `${ip.ip}/Index/getParemtNavList`,
+        params
+      );
       //    var total = data.total;//当前页
       //    var totalPages = data.totalPages;//总页数
       // console.log(data)
@@ -119,27 +138,22 @@ export default {
         }
       }
     },
-    location (id, m3, menu3) {
-      if (id == '8abe94755f766ecb015f76c83c8a0001') {//宣传片
-        this.cnm = 'my-Xcp';
+    location(id, m3, menu3) {
+      if (id == "8abe94755f766ecb015f76c83c8a0001") {
+        //宣传片
+        this.cnm = "my-Xcp";
       } else {
         for (var i = 0; i < menu3.length; i++) {
           if (menu3[i].id == m3) {
             this.menu3_v = menu3[i];
           }
         }
-        this.cnm = 'my-Jy';
+        this.cnm = "my-Jy";
       }
-
-
     }
-
-
   }
-}
-
+};
 </script>
-
 
 <style scoped>
 .v-enter,
@@ -194,6 +208,7 @@ li {
   margin: auto;
   background-color: rgb(243, 243, 243);
   color: black;
+  cursor: pointer;
 }
 .Xcpp {
   width: 90%;
@@ -204,15 +219,12 @@ li {
   padding-left: 20px;
   padding-top: 15px;
 }
-li:hover {
-  /*color: aliceblue;*/
-  /*background-color: rgb(209,52,59);*/
-  background-color: #dfe6e9;
-}
+
 .newsSiBt_click {
   color: aliceblue;
   background-color: rgb(209, 52, 59);
 }
+
 img {
   width: 15px;
   height: 15px;
@@ -225,6 +237,4 @@ img {
   -webkit-transform: rotate(180deg); /* Safari 和 Chrome */
   -o-transform: rotate(180deg); /* Opera */
 }
-</style> 
-
-
+</style>

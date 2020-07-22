@@ -9,84 +9,99 @@
 </template>
 
 <script>
-import NewsCop from "./NewsCenterCop/NewsCop"
-import imgHead from "./publicCop/imgHead"
-import { ajaxSpringBeanCommonFunction } from "../assets/js/util.js"
-import ip from "../assets/js/api.js"
+import NewsCop from "./NewsCenterCop/NewsCop";
+import imgHead from "./publicCop/imgHead";
+import { ajaxSpringBeanCommonFunction } from "../assets/js/util.js";
+import ip from "../assets/js/api.js";
 
 export default {
   components: {
     imgHead,
-    NewsCop,
+    NewsCop
   },
-  data () {
+  data() {
     return {
-      cnm: 'menu3',
+      cnm: "menu3",
       ip: ip.ip,
       menu3: [],
       classId: "",
       menu3_v: {},
       currentPage: 1,
-      pageSize: 2,
+      pageSize: 999,
       total: 0,
       totalPages: 0,
-      m2Id: ''
-    }
+      m2Id: ""
+    };
   },
   watch: {
-    m2Id (newVal) {
+    m2Id(newVal) {
       // console.log('m2Id', newVal);
-      this.getMenu3(newVal, this.currentPage, this.pageSize)
+      this.getMenu3(newVal, this.currentPage, this.pageSize);
     }
   },
-  created () {
+  created() {
     if (this.$route.query.m2 != null)
       this.getMenu3(this.$route.query.m2, this.currentPage, this.pageSize);
   },
   methods: {
-    getMenu3 (newsClassID, currentPage, pageSize) {
+    getMenu3(newsClassID, currentPage, pageSize) {
       // console.log('newsClassID', newsClassID)
       //判断其它模板
-      if (newsClassID == "8abe94755ffc68f4015ffc77232b0005") {//网上看房
+      if (newsClassID == "8abe94755ffc68f4015ffc77232b0005") {
+        //网上看房
         pageSize = 4;
         this.cnm = "InKfCop";
-      } else if (newsClassID == "8abe94755ffc68f4015ffc718b480002") {//通知公告
+      } else if (newsClassID == "8abe94755ffc68f4015ffc718b480002") {
+        //通知公告
         pageSize = 16;
         this.cnm = "menu3_1";
-      } else if(newsClassID == '8abe94755f56398f015f564a0f140000'){
-        this.cnm = "Map";     
-      }else if (newsClassID == "8abe9c5a698e6ebc01698fc257d90006") {//物业服务
-        this.cnm = "InXqCop";
-      } else if (newsClassID == "8abe9c5a698e6ebc01698fc669780007") {//校企合作
-        this.cnm = "InXqCop";
-      } else if (newsClassID == "8abe9c5a698e6ebc01698fc6e02d0008") {//金融服务
-        this.cnm = "InXqCop";
-      } else if (newsClassID == "8abe94755f281266015f283bd72e0000") {//集团简介
-
-      }
-      else if (newsClassID == "8abe9c5a698e6ebc01698fc7c126000a") {//园区地图
+      } else if (newsClassID == "8abe94755f56398f015f564a0f140000") {
         this.cnm = "Map";
-      }
-      else {
-        //this.cnm = "menu3";	
-        this.cnm = "Map";//园区地图
+      } else if (newsClassID == "8abe9c5a698e6ebc01698fc257d90006") {
+        //物业服务
+        this.cnm = "InXqCop";
+      } else if (newsClassID == "8abe9c5a698e6ebc01698fc669780007") {
+        //校企合作
+        this.cnm = "InXqCop";
+      } else if (newsClassID == "8abe9c5a698e6ebc01698fc6e02d0008") {
+        //金融服务
+        this.cnm = "InXqCop";
+      } else if (newsClassID == "8abe94755f281266015f283bd72e0000") {
+        //集团简介
+      } else if (newsClassID == "8abe9c5a698e6ebc01698fc7c126000a") {
+        //园区地图
+        this.cnm = "Map";
+      } else {
+        //this.cnm = "menu3";
+        this.cnm = "Map"; //园区地图
       }
       if (newsClassID == "8abe9c5a698e6ebc01698fc7c126000a") {
-        var params = { "newsClassID": "8abe9bed6d7c117f016d8124f1ad0007", "currentPage": currentPage, "pageSize": pageSize };
+        var params = {
+          newsClassID: "8abe9bed6d7c117f016d8124f1ad0007",
+          currentPage: currentPage,
+          pageSize: pageSize
+        };
         var url = ip.ip + "/news/getDataList";
         var data = ajaxSpringBeanCommonFunction(url, params);
       } else {
-        var params = { "newsClassID": newsClassID, "currentPage": currentPage, "pageSize": pageSize };
+        var params = {
+          newsClassID: newsClassID,
+          currentPage: currentPage,
+          pageSize: pageSize
+        };
         var url = ip.ip + "/news/getDataList";
         var data = ajaxSpringBeanCommonFunction(url, params);
       }
-      this.total = data.total;//当前条数
-      this.totalPages = data.totalPages;//总页数
+      this.total = data.total; //当前条数
+      this.totalPages = data.totalPages; //总页数
       data.rows.map(item => {
-        item.content = item.content.replace(/<img src="/g, `<img src=\"${ip.ip}`);
-      })
+        item.content = item.content.replace(
+          /<img src="/g,
+          `<img src=\"${ip.ip}`
+        );
+      });
       this.menu3 = data.rows;
-      console.log(777,this.menu3)
+      console.log(777, this.menu3);
 
       // var m3 = this.$route.query.m3;
       // if (typeof (m3) == "undefined") {
@@ -105,15 +120,13 @@ export default {
       //     }
       //   }
       // }
-    },
-
+    }
   }
-
-}
+};
 </script>
 
 <style scoped>
-.NewsBody{
+.NewsBody {
   width: 100%;
   box-sizing: border-box;
 }
@@ -123,4 +136,3 @@ export default {
   min-height: 1000px;
 }
 </style>
-

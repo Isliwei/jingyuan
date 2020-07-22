@@ -1,44 +1,45 @@
 <template>
   <div class="newsSidebar">
     <div class="newsSidebarTest">
-      <div class="newsSidebarTestBt">{{menu3[0].className}}</div>
-      <div class="select">
+      <div class="newsSidebarTestBt">{{ menu3[0].className }}</div>
+      <div class="select" v-if="menu3[0].className === '物业服务'">
         <div
           class="select-tabs"
           :class="{ 'select-tabs-selected': ifShow === index }"
           v-for="(v, index) in menu3"
           :key="index"
           @click="ifShow = index"
-        >{{v.title}}</div>
+        >
+          {{ v.title }}
+        </div>
       </div>
       <div v-html="menu3[ifShow].content" class="forTest"></div>
     </div>
   </div>
 </template>
 <script>
-
-import ip from "../../assets/js/api.js"
-import pagebar from "../publicCop/Fy"
+import ip from "../../assets/js/api.js";
+import pagebar from "../publicCop/Fy";
 
 export default {
   components: {
-    pagebar,
+    pagebar
   },
-  data () {
+  data() {
     return {
       ip: ip.ip,
       menu3: this.$parent.menu3.reverse(),
       id: this.$route.query.id,
       m2: this.$route.query.m2,
-      ifShow: 0,
-    }
+      ifShow: 0
+    };
   },
   methods: {
-    reload () {
+    reload() {
       window.location.reload();
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -74,7 +75,7 @@ export default {
   float: left;
 }
 .newsSidebarTest {
-  width: 79%;
+  width: 82%;
   float: right;
   padding-bottom: 120px;
 }

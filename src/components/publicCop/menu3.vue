@@ -1,71 +1,73 @@
 <template>
   <div class="newsSidebar newsSidebarTest">
-        
     <div>
       <!-- <div class="newsSidebarTestBt">{{className}}</div> -->
-      <div class="forTest" v-for="v in $parent.menu3" :key="v.s">    
-        <a :href="'/content2#/content2?id='+id+'&m2='+m2+'&m3='+v.id" @click="reload()" v-html="v.content">
-          <!--<img :src="ip+'/'+v.imgUrl" />-->
-        </a>
+      <div class="forTest" v-for="v in $parent.menu3" :key="v.s">
         <ul>
-          <p><a style="width: 100%;max-width: 680px;color:#000;" :href="'/content2#/content2?id='+id+'&m2='+m2+'&m3='+v.id" @click="reload()">{{v.title}}</a></p>
+          <p>
+            <router-link
+              style="color:#000;"
+              :to="{
+                name: 'content2',
+                query: { id: id, m2: m2, m3: v.id }
+              }"
+            >
+              {{ v.title }}
+            </router-link>
+          </p>
           <li class="zyText" v-html="v.describez.replace(/\n/g, '<br/>')"></li>
-          <li style="margin-top:20px;">{{v.publishDate.toString().substring(0,10)}}</li>
+          <li style="margin-top:20px;">
+            {{ v.publishDate.toString().substring(0, 10) }}
+          </li>
         </ul>
       </div>
     </div>
-       <div class="Fyl">
-        <pagebar></pagebar>
-       </div>  
+    <div class="Fyl">
+      <pagebar></pagebar>
+    </div>
   </div>
 </template>
 <script>
-import ip from "../../assets/js/api.js"
-import pagebar from  "./Fy"
-
+import ip from "../../assets/js/api.js";
+import pagebar from "./Fy";
 
 export default {
-  components:{
-      pagebar,
+  components: {
+    pagebar
   },
-  data(){
-    return{
-      ip:ip.ip,
+  data() {
+    return {
+      ip: ip.ip,
       menu3: this.$parent.menu3,
-      id:this.$route.query.id,
-      m2:this.$route.query.m2,
-    }
+      id: this.$route.query.id,
+      m2: this.$route.query.m2
+    };
   },
-  created(){
-      
-  },
-  methods:{
-    reload(){
-      window.setTimeout(function (){
+  created() {},
+  methods: {
+    reload() {
+      window.setTimeout(function() {
         window.location.reload();
-      },40);
-    },
+      }, 40);
+    }
   }
-}
+};
 </script>
 
-
-
 <style scoped>
-
-.newsSidebar{
+.newsSidebar {
   width: 100%;
 }
-.newsSidebarBody{
+.newsSidebarBody {
   width: 20%;
   float: left;
 }
-.newsSidebarTest{
+.newsSidebarTest {
   width: 79%;
   float: right;
   padding-bottom: 120px;
 }
-.newsSidebarTestBt{
+.newsSidebarTestBt {
   width: 100%;
   max-width: 680px;
   text-align: left;
@@ -74,20 +76,20 @@ export default {
   margin-bottom: 10px;
   padding-left: 10px;
 }
-.newsSidebarTest img{
+.newsSidebarTest img {
   width: 35%;
   height: 230px;
   float: left;
 }
-.newsSidebarTest li{
+.newsSidebarTest li {
   width: 63%;
   max-width: 680px;
   float: left;
   text-align: left;
-  color: rgb(190,190,190);
+  color: rgb(190, 190, 190);
   padding-left: 25px;
 }
-.Fyl{
+.Fyl {
   width: 70%;
   min-width: 1236px;
   height: 60px;
@@ -95,41 +97,41 @@ export default {
   bottom: 12%;
   margin: auto;
 }
-.zyText{
-  min-height:170px;
+.zyText {
+  min-height: 170px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 8;
   overflow: hidden;
   width: 63%;
 }
-.forTest{
+.forTest {
   width: 100%;
   height: 260px;
 }
-.newsSidebarTest p{
+.newsSidebarTest p {
   font-size: 18px;
   font-weight: bold;
-  float:left;
-  padding-left:24px;
+  float: left;
+  padding-left: 24px;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
   width: 63%;
   text-align: left;
 }
-.newsSiBt ul{
+.newsSiBt ul {
   width: 80%;
   height: 40px;
-  background-color: rgb(255,255,255);
+  background-color: rgb(255, 255, 255);
   font-size: 18px;
   text-align: left;
   float: right;
   padding-left: 20px;
   padding-top: 15px;
 }
-.newsSiBt ul:hover{
-  background-color: rgb(209,52,59);
+.newsSiBt ul:hover {
+  background-color: rgb(209, 52, 59);
   color: aliceblue;
 }
 </style>

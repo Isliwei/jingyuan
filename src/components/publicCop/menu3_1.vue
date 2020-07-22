@@ -1,75 +1,77 @@
 <template>
   <div class="newsSidebar newsSidebarTest">
-        
     <div style="min-height:510px;max-height:510px;">
       <!-- <div class="newsSidebarTestBt">{{className}}</div> -->
-      <div class="forTest" v-for="v in menu3" :key="v.s">    
-         <!-- <a :href="'/content2#/content2?id='+id+'&m2='+m2+'&m3='+v.id" @click="reload()">
+      <div class="forTest" v-for="v in menu3" :key="v.s">
+        <router-link
+          class="link-style"
+          :to="{ name: 'content2', query: { id: id, m2: m2, m3: v.id } }"
+        >
+          <!-- <a :href="'/content2#/content2?id='+id+'&m2='+m2+'&m3='+v.id" @click="reload()">
           <img :src="ip+'/'+v.imgUrl" />
         </a> -->
-        <ul style="line-height: 30px">
-          <p>
-          	<!-- <a style="width: 100%;max-width: 680px;color:#000;" 
-          			:href="'/content2#/content2?id='+id+'&m2='+m2+'&m3='+v.id" 
-          			@click.native="reload()">{{v.title}}----</a> -->
-          	<router-link 
-          		style="width: 100%;max-width: 680px;color:#000;"
-          		:to="{ name: 'NewsCenter', query:{ id:id,m2:m2,m3:v.id} }"
-          		>
-          		{{v.title}}
-          	</router-link>
-          </p>
+          <div>{{ v.title }}</div>
           <!-- <li class="zyText" v-html="v.describez.replace(/\n/g, '<br/>')"></li> -->
-          <li >{{v.publishDate.toString().substring(0,10)}}</li>
-        </ul>
+          <div>{{ v.publishDate.toString().substring(0, 10) }}</div>
+        </router-link>
       </div>
     </div>
-       <div class="Fyl">
-        <pagebar style="min-width:200px;"></pagebar>
-       </div>  
+    <div class="Fyl">
+      <pagebar style="min-width:200px;"></pagebar>
+    </div>
   </div>
 </template>
 <script>
-import ip from "../../assets/js/api.js"
-import pagebar from  "./Fy"
+import ip from "../../assets/js/api.js";
+import pagebar from "./Fy";
 
 export default {
-  components:{
-      pagebar,
+  components: {
+    pagebar
   },
-  data(){
-    return{
-      ip:ip.ip,
+  data() {
+    return {
+      ip: ip.ip,
       menu3: this.$parent.menu3,
-      id:this.$route.query.id,
-      m2:this.$route.query.m2
-    }
+      id: this.$route.query.id,
+      m2: this.$route.query.m2
+    };
   },
-  methods:{
-    reload(){
-      window.setTimeout(function (){
+  methods: {
+    reload() {
+      window.setTimeout(function() {
         window.location.reload();
-      },40);
-    },
+      }, 40);
+    }
   }
-}
+};
 </script>
 
 <style scoped>
-
-.newsSidebar{
+.link-style {
+  color: #000;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-right: 4%;
+}
+.link-style div:first-child {
+  font-weight: 550;
+}
+.newsSidebar {
   width: 100%;
 }
-.newsSidebarBody{
+.newsSidebarBody {
   width: 20%;
   float: left;
 }
-.newsSidebarTest{
+.newsSidebarTest {
   width: 82%;
   float: right;
   padding-bottom: 120px;
 }
-.newsSidebarTestBt{
+.newsSidebarTestBt {
   width: 100%;
   max-width: 680px;
   text-align: left;
@@ -78,61 +80,68 @@ export default {
   margin-bottom: 10px;
   padding-left: 10px;
 }
-.newsSidebarTest img{
+.newsSidebarTest img {
   width: 35%;
   height: 230px;
   float: left;
 }
-.newsSidebarTest li{
+.newsSidebarTest li {
   width: 30%;
   max-width: 680px;
   float: right;
   text-align: left;
-  color:#666;
+  color: #666;
 }
-.Fyl{
+.Fyl {
   width: 70%;
   min-width: 1236px;
   height: 60px;
   bottom: 12%;
   margin: auto;
 }
-.zyText{
-  min-height:170px;
+.zyText {
+  min-height: 170px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 8;
   overflow: hidden;
   width: 63%;
 }
-.forTest{
+.forTest {
   width: 100%;
+  line-height: 30px;
+  cursor: pointer;
 }
-.newsSidebarTest p{
+
+.forTest:hover {
+  background: #f6f6f6;
+}
+
+.newsSidebarTest p {
   color: #121212;
   font-size: 16px;
   font-weight: bold;
-  float:left;
-  padding-left:24px;
+  float: left;
+  padding-left: 24px;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
   width: 65%;
   max-width: 850px;
   text-align: left;
 }
-.newsSiBt ul{
+.newsSiBt ul {
   width: 80%;
   height: 40px;
-  background-color: rgb(255,255,255);
+  background-color: rgb(255, 255, 255);
   font-size: 18px;
   text-align: left;
   float: right;
   padding-left: 20px;
   padding-top: 15px;
 }
-.newsSiBt ul:hover{
-  background-color: rgb(209,52,59);
+.newsSiBt ul:hover {
+  background-color: rgb(209, 52, 59);
   color: aliceblue;
 }
 </style>

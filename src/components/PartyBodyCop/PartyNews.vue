@@ -1,102 +1,123 @@
 <template>
   <div class="PartyNews">
-
     <div class="PartyBt">
-    <ul class="PartyBtul">
-      <li v-for="v in menu2" :key="v.i" class="PartyBtli" >
-        
-       <a @click="menu3 = $parent.getMenu3(v.ID,1,8);m2=v.ID" :class="v.ID==m2 ? 'newsSiBt_click':'PartyBta'" >{{v.ClassName}}</a>
-
-        
-      </li>
-      <a style="float:right;margin-top:7px;font-size:16px;color: #A0A0A0;" :href="'/news#/news?id='+m1+'&m2='+m2+'&m3='+m2" >查看更多</a>
-      <li class="PartyBtliFot"></li> 
-    </ul>
+      <ul class="PartyBtul">
+        <li v-for="v in menu2" :key="v.i" class="PartyBtli">
+          <a
+            @click="
+              menu3 = $parent.getMenu3(v.ID, 1, 8);
+              m2 = v.ID;
+            "
+            :class="v.ID == m2 ? 'newsSiBt_click' : 'PartyBta'"
+            >{{ v.ClassName }}</a
+          >
+        </li>
+        <router-link
+          class="href-class link-news"
+          :to="{
+            name: 'News',
+            query: { id: m1, m2: m2, m3: m2 }
+          }"
+        >
+          查看更多
+        </router-link>
+        <li class="PartyBtliFot"></li>
+      </ul>
     </div>
-    
 
+    <div>
+      <div class="JJJC">
+        <swiper :options="swiperOption" ref="mySwiper">
+          <div
+            class="swiper-slide"
+            v-for="v in menu3"
+            :key="v.index"
+            :style="{ backgroundImage: 'url(' + ip + '/' + v.imgUrl + ')' }"
+          ></div>
+          <div class="swiper-pagination" slot="pagination"></div>
+        </swiper>
 
-     <div>
-       
-      <div class="JJJC" >
-        <div v-for="v in menu3" :key="v.s">
-          <img :src="ip+'/'+v.imgUrl">
-        </div>  
-        <ul style="width:60%;" >
-            
-            <li v-for="v in menu3" :key="v.s" >
+        <ul style="width:60%;">
+          <li v-for="v in menu3" :key="v.s">
             <p class="JJLb" style="float:left;">
-              <a style="color:#000;" :href="'/news#/news?id='+m1+'&m2='+m2+'&m3='+m2" > 
-                {{v.title}} 
-              </a>
+              <router-link
+                style="color:#000;font-weight:550;"
+                :to="{
+                  name: 'News',
+                  query: { id: m1, m2: m2, m3: m2 }
+                }"
+              >
+                {{ v.title }}
+              </router-link>
             </p>
             <p>
-              <a style="color:#000;" :href="'/news#/news?id='+m1+'&m2='+m2+'&m3='+m2">
-              {{v.publishDate.toString().substring(0,10)}}
-              </a>
+              <router-link
+                style="color:rgb(160, 160, 160);"
+                :to="{
+                  name: 'News',
+                  query: { id: m1, m2: m2, m3: m2 }
+                }"
+              >
+                {{ v.publishDate.toString().substring(0, 10) }}
+              </router-link>
             </p>
-            </li>
-
+          </li>
         </ul>
       </div>
-    </div>  
-
+    </div>
   </div>
 </template>
 <script>
-import {ajaxSpringBeanCommonFunction} from "../../assets/js/util.js"
-import ip from "../../assets/js/api.js"
+import { ajaxSpringBeanCommonFunction } from "../../assets/js/util.js";
+import ip from "../../assets/js/api.js";
 
 export default {
-
-  data(){
-    return{
-      ip:ip.ip,
+  data() {
+    return {
+      ip: ip.ip,
       menu3: [],
-      menu2:[],
-      m1:"8abe94755f281266015f283c72a30001",
-      m2:"8abe9975608b41aa01608b56ec020001"
-
-  
-    }
+      menu2: [],
+      m1: "8abe94755f281266015f283c72a30001",
+      m2: "8abe9975608b41aa01608b56ec020001"
+    };
   },
-  created(){
+  created() {
     this.menu2 = this.$parent.getMenu2("8abe94755f281266015f283c72a30001");
-    this.menu3 = this.$parent.getMenu3(this.m2,1,8);
-    this.newmenu2()
+    this.menu3 = this.$parent.getMenu3(this.m2, 1, 8);
+    this.newmenu2();
   },
   computed: {
-      swiper() {
-        return this.$refs.mySwiper.swiper
-      }
+    swiper() {
+      return this.$refs.mySwiper.swiper;
+    }
   },
-  methods:{
-     newmenu2(){
-       this.menu2 = this.menu2.slice(2,6)
-     },
-     
-  },
-}
+  methods: {
+    newmenu2() {
+      this.menu2 = this.menu2.slice(2, 6);
+    }
+  }
+};
 </script>
 
-
 <style scoped>
-.PartyNews{
+.swiper-slide {
+  background-size: 100% 100%;
+}
+.PartyNews {
   width: 100%;
   height: 400px;
 }
-.PartyBtul{
+.PartyBtul {
   width: 100%;
   height: 45px;
   line-height: 40px;
-  border-bottom: 5px solid rgb(245,245,245);
-  margin-bottom: 5px;
+  border-bottom: 5px solid rgb(245, 245, 245);
   text-align: left;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   padding-left: 5px;
 }
-.PartyBtli{
+.PartyBtli {
   margin-right: 20px;
   position: relative;
   float: left;
@@ -104,56 +125,65 @@ export default {
   right: 5px;
   width: 90px;
   line-height: 40px;
-  cursor:pointer;
+  cursor: pointer;
 }
-.PartyBtli li:nth-child(1){
-  border-bottom: 5px solid rgb(174,19,47);
+.PartyBtli li:nth-child(1) {
+  border-bottom: 5px solid rgb(174, 19, 47);
 }
-.PartyBtliFot{
-  color: #A0A0A0;
+.PartyBtliFot {
+  color: #a0a0a0;
   font-size: 16px;
   float: right;
   text-align: right;
   border: none;
   position: relative;
   top: 11px;
-  cursor:pointer;
+  cursor: pointer;
 }
-.JJJC{
+.JJJC {
   display: flex;
 }
-.JJJC div{
-  margin: 10px 0 0 0;
+.JJJC li {
+  width: 100%;
+  display: inline-flex;
+}
+.JJJC li p:first-child {
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.JJJC div {
+  margin: 5px 0 0 0;
   width: 40%;
   height: 330px;
 }
-.JJJC div img{
+.JJJC div img {
   width: 100%;
   height: 330px;
 }
-.JJJC ul{
+.JJJC ul {
   margin: 10px 0 0 10px;
 }
-.JJJC ul p:nth-child(even){
+.JJJC ul p:nth-child(even) {
   float: right;
-  color: rgb(220, 220,220);
+  color: rgb(220, 220, 220);
   line-height: 40px;
 }
-.JJLb{
+.JJLb {
   display: inline-block;
   line-height: 40px;
   text-align: left;
   width: 450px;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
-.newsSiBt_click{
+.newsSiBt_click {
   padding-bottom: 8px;
-  border-bottom: 5px solid rgb(174,19,47);
+  border-bottom: 5px solid rgb(174, 19, 47);
 }
-.PartyBta:hover{
+.PartyBta:hover {
   padding-bottom: 8px;
-  border-bottom: 5px solid rgb(174,19,47);
+  border-bottom: 5px solid rgb(174, 19, 47);
 }
 </style>

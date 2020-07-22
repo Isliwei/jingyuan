@@ -1,24 +1,27 @@
 <template>
   <div class="Company">
-    <div class="CompanyBt">
+    <!-- <div class="CompanyBt">
       <p class="CnPbt">入驻企业</p>
       <p class="EgPbt" style="top:-10px;">SHI XIN WEN CHUANG</p>
-    </div>
-    <!-- <swiper :options="swiperOption" ref="mySwiper">
+    </div> -->
+    <swiper :options="swiperOption" ref="mySwiper">
       <div class="swiper-slide" v-for="v in menu3" :key="v.i">
         <router-link
           class="Cnpbta"
           style="color: aliceblue;"
-          :to="{ name: 'content2', query:{ id:m1,m2:m2,m3:v.id} }"
+          :to="{ name: 'content2', query: { id: m1, m2: m2, m3: v.id } }"
         >
-          <div class="CompanyTxO" :style="{backgroundImage: 'url(' +ip+'/'+v.imgUrl+ ')'}">
-            <p class="CnPbt" style="line-height:56px;">{{v.title}}</p>
+          <div
+            class="CompanyTxO"
+            :style="{ backgroundImage: 'url(' + ip + '/' + v.imgUrl + ')' }"
+          >
+            <p class="CnPbt" style="line-height:56px;">{{ v.title }}</p>
             <p class="EgPbt">SHI XIN WEN CHUANG</p>
-            <li>{{v.describez}}</li>
+            <li>{{ v.describez }}</li>
           </div>
         </router-link>
       </div>
-    </swiper> -->
+    </swiper>
   </div>
 </template>
 <script>

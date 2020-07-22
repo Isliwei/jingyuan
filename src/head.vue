@@ -6,26 +6,27 @@
     <div class="headDh">
       <router-link to="/" tag="li">首页</router-link>
       <li v-for="v in nav" :key="v.ID">
-        <!-- <a :href="'/'+v.ID+'#/'+v.ID+'?id='+v.ID">{{ v.ClassName }}</a> -->
-        <!-- <a :href="'/news#/news?id='+v.ID" @click="reload()">{{ v.ClassName }}</a>   -->
         <router-link
-          v-if="v.ID == '8abe94755f281266015f283c72a30001' "
-          :class="{'isNews': v.ID==$route.query.id}"
-          :to="{ name: 'PartyBuildingWorld', query:{ id: v.ID } }"
+          v-if="v.ID == '8abe94755f281266015f283c72a30001'"
+          :class="{ isNews: v.ID == $route.query.id }"
+          :to="{ name: 'PartyBuildingWorld', query: { id: v.ID } }"
           @click.native="reload()"
-        >{{ v.ClassName }}</router-link>
+          >{{ v.ClassName }}</router-link
+        >
         <router-link
-          v-else-if="v.ID == '8abe94755f281266015f283bd72e0000' "
-          :to="{ name: 'GroupIntroduction', query:{ id: v.ID } }"
-          :class="{'isNews': v.ID==$route.query.id}"
+          v-else-if="v.ID == '8abe94755f281266015f283bd72e0000'"
+          :to="{ name: 'GroupIntroduction', query: { id: v.ID } }"
+          :class="{ isNews: v.ID == $route.query.id }"
           @click.native="reload()"
-        >{{ v.ClassName }}</router-link>
+          >{{ v.ClassName }}</router-link
+        >
         <router-link
           v-else
-          :to="{ name: 'NewsCenter', query:{ id: v.ID } }"
-          :class="{'isNews': v.ID==$route.query.id}"
+          :to="{ name: 'NewsCenter', query: { id: v.ID } }"
+          :class="{ isNews: v.ID == $route.query.id }"
           @click.native="reload()"
-        >{{ v.ClassName }}</router-link>
+          >{{ v.ClassName }}</router-link
+        >
       </li>
     </div>
   </div>

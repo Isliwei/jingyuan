@@ -7,15 +7,20 @@
             class="swiper-slide"
             v-for="v in menu3"
             :key="v.index"
-            :style="{backgroundImage: 'url(' + ip+'/'+v.imgUrl + ')'}"
+            :style="{ backgroundImage: 'url(' + ip + '/' + v.imgUrl + ')' }"
           >
             <div class="newsImgMs">
               <div class="newsImgMst">
                 <li>
-                  <a
-                    style="color:#FAFAFA;"
-                    :href="'/content2#/content2?id='+m1+'&m2='+m2+'&m3='+v.id"
-                  >{{v.title}}</a>
+                  <router-link
+                    style="color:#fff;"
+                    :to="{
+                      name: 'content2',
+                      query: { id: m1, m2: m2, m3: v.id }
+                    }"
+                  >
+                    {{ v.title }}
+                  </router-link>
                 </li>
               </div>
             </div>
@@ -28,32 +33,34 @@
       <ul v-for="v in menu3" :key="v.s">
         <li class="newsTestli">
           <router-link
-            :to="{ name: 'NewsCenter', query:{ id:m1,m2:m2,m3:v.id} }"
+            :to="{ name: 'NewsCenter', query: { id: m1, m2: m2, m3: v.id } }"
             style="color:#000;"
-          >{{v.title}}22</router-link>
+            >{{ v.title }}</router-link
+          >
         </li>
         <li class="newsDatali">
           <router-link
-            :to="{ name: 'NewsCenter', query:{ id:m1,m2:m2,m3:v.id} }"
+            :to="{ name: 'NewsCenter', query: { id: m1, m2: m2, m3: v.id } }"
             style="color:#000;"
-          >{{v.inPutTime.toString().substring(0,10)}}</router-link>
+            >{{ v.inPutTime.toString().substring(0, 10) }}</router-link
+          >
         </li>
       </ul>
     </div>
   </div>
 </template>
 <script>
-import { ajaxSpringBeanCommonFunction } from "../../assets/js/util.js"
-import ip from "../../assets/js/api.js"
-import 'swiper/dist/css/swiper.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { ajaxSpringBeanCommonFunction } from "../../assets/js/util.js";
+import ip from "../../assets/js/api.js";
+import "swiper/dist/css/swiper.css";
+import { swiper, swiperSlide } from "vue-awesome-swiper";
 
 export default {
   components: {
     swiper,
     swiperSlide
   },
-  data () {
+  data() {
     return {
       ip: ip.ip,
       menu3: [],
@@ -65,21 +72,20 @@ export default {
         //loop:true使轮播图循环轮播
         loop: true,
         autoplay: false,
-        speed: 2000,
-      },
-    }
+        speed: 2000
+      }
+    };
   },
-  created () {
+  created() {
     this.menu3 = this.$parent.getMenu3(this.m2, 1, 7);
   },
   computed: {
-    swiper () {
-      return this.$refs.mySwiper.swiper
+    swiper() {
+      return this.$refs.mySwiper.swiper;
     }
   }
-}
+};
 </script>
-
 
 <style scoped>
 .newsCenter {

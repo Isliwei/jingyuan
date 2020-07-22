@@ -1,9 +1,11 @@
 <template>
   <div class="InKfCop">
     <div class="block" v-for="v in menu3" :key="v.s">
-      <a :href="'/content2#/content2?id='+id+'&m2='+m2+'&m3='+v.id">
-        <img :src="ip+'/'+v.imgUrl" id="img2">
-      </a>
+      <router-link
+        :to="{ name: 'content2', query: { id: id, m2: m2, m3: v.id } }"
+      >
+        <img :src="ip + '/' + v.imgUrl" id="img2" />
+      </router-link>
       <p style="float:left;padding-left:5px;">{{ v.title }}</p>
       <p>{{ v.describez }}</p>
     </div>
@@ -13,40 +15,37 @@
   </div>
 </template>
 <script>
-import ip from "../../assets/js/api.js"
-import pagebar from "../publicCop/Fy"
+import ip from "../../assets/js/api.js";
+import pagebar from "../publicCop/Fy";
 
 export default {
   components: {
-    pagebar,
+    pagebar
   },
   props: {
     m2Id: String
   },
-  data () {
+  data() {
     return {
       ip: ip.ip,
       menu3: this.$parent.menu3,
       id: this.$route.query.id,
-      m2: this.$route.query.m2,
-    }
+      m2: this.$route.query.m2
+    };
   },
-  created () {
-
-  },
+  created() {},
   methods: {
-    reload () {
+    reload() {
       window.location.reload();
-    },
-
+    }
   }
-}
+};
 </script>
 
 <style scoped>
 .InKfCop {
   float: right;
-  width: 80%;
+  width: 82%;
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 180px;
