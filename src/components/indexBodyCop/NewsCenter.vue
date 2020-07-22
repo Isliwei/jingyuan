@@ -30,7 +30,7 @@
           <router-link
             :to="{ name: 'NewsCenter', query:{ id:m1,m2:m2,m3:v.id} }"
             style="color:#000;"
-          >{{v.title}}</router-link>
+          >{{v.title}}22</router-link>
         </li>
         <li class="newsDatali">
           <router-link
@@ -76,10 +76,7 @@ export default {
     swiper () {
       return this.$refs.mySwiper.swiper
     }
-  },
-  methods: {
-
-  },
+  }
 }
 </script>
 

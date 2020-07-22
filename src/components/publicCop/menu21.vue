@@ -1,8 +1,5 @@
 <template>
-  <div class="menu2">
-    
     <div class="newsSidebarBody">
-
       <div v-for="item in bT" :key="item.s" class="newsSiBt">
           <ul :class="item.ID==m2 ? 'newsSiBt_click':''" >
 
@@ -11,7 +8,6 @@
             </a>
             <img id="imgFz" src="../../assets/imgs/transition.png"/>
           </ul>
-          
       </div>
       <transition>
         <div v-if="classId == item.ID && item.ID != '8abe94755f766ecb015f76c83c8a0001'" :class="{ 'isSidebar': isNowPage }">
@@ -20,9 +16,6 @@
         </div>
       </transition>
     </div>
-    
-    
-  </div>
 </template>
 <script>
 import {ajaxSpringBeanCommonFunction} from "../../assets/js/util.js"
@@ -87,9 +80,6 @@ export default {
 
 }
 </script>
-
-
-
 
 <style scoped>
 .v-enter,

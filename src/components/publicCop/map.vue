@@ -2,14 +2,14 @@
   <div class="newsSidebar newsSidebarTest">
     <div>
       <div class="forTest" v-for="v in $parent.menu3" :key="v.s">
-        <a
+        <!-- <a
           :href="'/content2#/content2?id=' + id + '&m2=' + m2 + '&m3=' + v.id"
           @click="reload()"
           v-html="v.content"
-        >
+        > -->
           <img :src="ip + '/' + v.imgUrl">
-        </a>
-        <ul>
+        <!-- </a> -->
+        <div class="content">
           <p class="mapName">
             <a
               style="width: 100%;max-width: 680px;color:#000;"
@@ -19,9 +19,10 @@
               @click="reload()"
             >{{ v.title }}</a>
           </p>
-          <li class="zyText" v-html="v.describez.replace(/\n/g, '<br/>')"></li>
-          <!--<li style="margin-top:20px;">{{v.publishDate.toString().substring(0,10)}}</li>-->
-        </ul>
+          <li class="zyText" v-html="v.content.replace(/\n/g, '<br/>')"></li>
+          <li>{{v.publishDate.toString().substring(0,10)}}</li>
+        </div>
+
       </div>
     </div>
   </div>
@@ -52,7 +53,7 @@ export default {
   width: 100%;
 }
 .newsSidebarTest {
-  width: 79%;
+  width: 82%;
   float: right;
   padding-bottom: 120px;
 }
@@ -70,47 +71,49 @@ export default {
   height: 300px;
 }
 .newsSidebarTest li {
-  width: 63%;
+  width: 100%;
   max-width: 680px;
   float: left;
   text-align: left;
-  color: rgb(190, 190, 190);
-  padding-left: 25px;
+  color:#A0A0A0;
+  font-size: 14px;
 }
 
 .zyText {
-  min-height: 170px;
+  min-height: 160px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 8;
   overflow: hidden;
   width: 63%;
 }
+
 .forTest {
   width: 100%;
-  height: 260px;
+  height: 200px;
+  display: inline-flex;
+  box-sizing: border-box;
+  margin-bottom:16px;
 }
+
+.forTest img{
+  width: 30%;
+  height: 200px;
+}
+
+.forTest .content{
+  width: 70%;
+  box-sizing: border-box;
+  padding: 2px 20px;
+}
+
 .newsSidebarTest p {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 40%;
-  text-align: center;
-}
-.newsSiBt ul {
-  width: 80%;
-  height: 40px;
-  background-color: rgb(255, 255, 255);
-  font-size: 18px;
+  width: 20%;
   text-align: left;
-  float: right;
-  padding-left: 20px;
-  padding-top: 15px;
-}
-.newsSiBt ul:hover {
-  background-color: rgb(209, 52, 59);
-  color: aliceblue;
 }
 </style>

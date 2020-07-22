@@ -16,8 +16,8 @@ import F5 from '@/F5'
 Vue.use(Router)
 export default new Router({
   mode: 'hash',
-  //	mode : 'history',
-  base: '/dist/',
+  // mode : 'history',
+  base: '/resources/dist/',
   routes: [
     {
       path: '/',

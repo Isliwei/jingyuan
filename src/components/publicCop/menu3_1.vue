@@ -4,19 +4,19 @@
     <div style="min-height:510px;max-height:510px;">
       <!-- <div class="newsSidebarTestBt">{{className}}</div> -->
       <div class="forTest" v-for="v in menu3" :key="v.s">    
-         <!--<a :href="'/content2#/content2?id='+id+'&m2='+m2+'&m3='+v.id" @click="reload()">
+         <!-- <a :href="'/content2#/content2?id='+id+'&m2='+m2+'&m3='+v.id" @click="reload()">
           <img :src="ip+'/'+v.imgUrl" />
         </a> -->
         <ul style="line-height: 30px">
           <p>
-          	<!--<a style="width: 100%;max-width: 680px;color:#000;" 
+          	<!-- <a style="width: 100%;max-width: 680px;color:#000;" 
           			:href="'/content2#/content2?id='+id+'&m2='+m2+'&m3='+v.id" 
-          			@click.native="reload()">{{v.title}}----</a>-->
+          			@click.native="reload()">{{v.title}}----</a> -->
           	<router-link 
           		style="width: 100%;max-width: 680px;color:#000;"
           		:to="{ name: 'NewsCenter', query:{ id:id,m2:m2,m3:v.id} }"
           		>
-          		{{v.title}}1
+          		{{v.title}}
           	</router-link>
           </p>
           <!-- <li class="zyText" v-html="v.describez.replace(/\n/g, '<br/>')"></li> -->
@@ -42,11 +42,8 @@ export default {
       ip:ip.ip,
       menu3: this.$parent.menu3,
       id:this.$route.query.id,
-      m2:this.$route.query.m2,
+      m2:this.$route.query.m2
     }
-  },
-  created(){
-      
   },
   methods:{
     reload(){
@@ -58,8 +55,6 @@ export default {
 }
 </script>
 
-
-
 <style scoped>
 
 .newsSidebar{
@@ -70,7 +65,7 @@ export default {
   float: left;
 }
 .newsSidebarTest{
-  width: 79%;
+  width: 82%;
   float: right;
   padding-bottom: 120px;
 }
@@ -93,13 +88,12 @@ export default {
   max-width: 680px;
   float: right;
   text-align: left;
-  color: rgb(190,190,190);
+  color:#666;
 }
 .Fyl{
   width: 70%;
   min-width: 1236px;
   height: 60px;
-  /* position: absolute; */
   bottom: 12%;
   margin: auto;
 }
@@ -113,10 +107,10 @@ export default {
 }
 .forTest{
   width: 100%;
-  /* height: 260px; */
 }
 .newsSidebarTest p{
-  font-size: 18px;
+  color: #121212;
+  font-size: 16px;
   font-weight: bold;
   float:left;
   padding-left:24px;

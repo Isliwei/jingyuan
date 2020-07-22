@@ -53,7 +53,9 @@ export default {
       } else if (newsClassID == "8abe94755ffc68f4015ffc718b480002") {//通知公告
         pageSize = 16;
         this.cnm = "menu3_1";
-      } else if (newsClassID == "8abe9c5a698e6ebc01698fc257d90006") {//物业服务
+      } else if(newsClassID == '8abe94755f56398f015f564a0f140000'){
+        this.cnm = "Map";     
+      }else if (newsClassID == "8abe9c5a698e6ebc01698fc257d90006") {//物业服务
         this.cnm = "InXqCop";
       } else if (newsClassID == "8abe9c5a698e6ebc01698fc669780007") {//校企合作
         this.cnm = "InXqCop";
@@ -84,24 +86,25 @@ export default {
         item.content = item.content.replace(/<img src="/g, `<img src=\"${ip.ip}`);
       })
       this.menu3 = data.rows;
+      console.log(777,this.menu3)
 
-      var m3 = this.$route.query.m3;
-      if (typeof (m3) == "undefined") {
-        if (this.menu3.length == 1 && currentPage == 1) {
-          this.$route.query.m3 = this.menu3[0].id;
-          this.menu3_v = this.menu3[0];
-          this.cnm = "content1";
-          return;
-        }
-      } else {
-        for (var i = 0; i < this.menu3.length; i++) {
-          if (this.menu3[i].id == m3) {
-            this.menu3_v = this.menu3[i];
-            this.cnm = "content1";
-            return;
-          }
-        }
-      }
+      // var m3 = this.$route.query.m3;
+      // if (typeof (m3) == "undefined") {
+      //   if (this.menu3.length == 1 && currentPage == 1) {
+      //     this.$route.query.m3 = this.menu3[0].id;
+      //     this.menu3_v = this.menu3[0];
+      //     this.cnm = "content1";
+      //     return;
+      //   }
+      // } else {
+      //   for (var i = 0; i < this.menu3.length; i++) {
+      //     if (this.menu3[i].id == m3) {
+      //       this.menu3_v = this.menu3[i];
+      //       this.cnm = "content1";
+      //       return;
+      //     }
+      //   }
+      // }
     },
 
   }
@@ -118,7 +121,6 @@ export default {
 .NewsCop {
   width: 100%;
   min-height: 1000px;
-  padding-top: 20px;
 }
 </style>
 

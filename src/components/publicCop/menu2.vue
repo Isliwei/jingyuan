@@ -4,19 +4,20 @@
       <div v-for="(item,index) in bT" :key="item.s" class="newsSiBt">
         <ul :class="item.ID==m2Id ? 'newsSiBt_click':''">
           <div
-            :class="['menulist_left',isclick === index?'newsSiBt_click':'']"
+            :class="['menulist_left',isclick == index?'newsSiBt_click':'']"
             :style="`${item.childList && item.childList.length > 0 ? 'background-color: #fff; color: #000;' : ''}`"
             @click="reload(item,index)"
           >
-            <div>{{item.ClassName}}</div>
+            <div>{{item.ClassName}}{{isclick}}=={{index}}</div>
+            <div :class="['cur-icon',isclick == index?'':'cur-black']">&gt;</div>
           </div>
-          <router-link
+          <!-- <router-link
             :to="{ name: 'Map', query:{ id:m1,m2:item.ID} }"
             v-for="(cItem, cIndex) in item.childList"
             :key="`${cIndex}-childItem`"
             class="newsSiBt-child"
             @click.native="reload(cItem,index)"
-          >{{ cItem.ClassName }}</router-link>
+          >{{ cItem.ClassName }}999</router-link> -->
         </ul>
       </div>
     </div>
@@ -35,7 +36,7 @@ export default {
       bT: [],
       m1: "",
       m2: "",
-      isclick: -1
+      isclick:0
       // m2Id: ''
     }
   },
@@ -48,10 +49,14 @@ export default {
   },
   created () {
     this.getMenu2();
+    this.isclick = sessionStorage.getItem('menuIndex') || 0
   },
   methods: {
     reload (item, index) {
       this.isclick = index;
+      sessionStorage.setItem('menuIndex',index)
+      console.log(this.isclick,item,index)
+
       this.$emit('update:m2Id', item.ID);
       if (item.ClassName === '园区地图') {
         var url = ip.ip + "/Index/getParemtNavList";
@@ -80,10 +85,8 @@ export default {
         }
       }
       // if (data.length > 0) this.$emit('update:m2Id', data[0].ID);
-    },
-
+    }
   }
-
 }
 </script>
 
@@ -92,16 +95,37 @@ export default {
 
 <style scoped>
 .menulist_left {
+  width: 100%;
   height: 40px;
   line-height: 40px;
   padding-left: 10%;
   box-sizing: border-box;
+  display: inline-flex;
+  justify-content: space-around;
+  position: relative;
 }
+.cur-icon{
+  position: relative;
+}
+.cur-icon::after{
+  content: '';
+  width: 20px;
+  height: 20px;
+  border:1px dashed #fff;
+  position: absolute;
+  left: -6px;
+  top: 8px;
+}
+
+.cur-black::after{
+  border:1px dashed #999;
+}
+
 .newsSidebar {
   width: 100%;
 }
 .newsSidebarBody {
-  width: 20%;
+  width: 16%;
   float: left;
   margin-bottom: 200px;
   overflow: hidden;
