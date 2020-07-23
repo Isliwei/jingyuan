@@ -39,7 +39,7 @@
           }"
         >
           <p class="Xcpp" :class="item.ID == m2 ? 'newsSiBt_click  ' : ''">
-            {{ item.ClassName }}
+            {{ item.ClassName }}kk
           </p>
         </router-link>
       </div>
@@ -130,6 +130,7 @@ export default {
       //    var totalPages = data.totalPages;//总页数
       // console.log(data)
       this.menu3 = data;
+      console.log(333, this.menu3);
       if (data.length > 0) {
         if (this.m3 == null) {
           this.location(newsClassID, this.menu3[0].ID, data);

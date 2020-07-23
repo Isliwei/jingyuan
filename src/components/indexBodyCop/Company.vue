@@ -1,9 +1,9 @@
 <template>
   <div class="Company">
-    <!-- <div class="CompanyBt">
+    <div class="CompanyBt">
       <p class="CnPbt">入驻企业</p>
       <p class="EgPbt" style="top:-10px;">SHI XIN WEN CHUANG</p>
-    </div> -->
+    </div>
     <swiper :options="swiperOption" ref="mySwiper">
       <div class="swiper-slide" v-for="v in menu3" :key="v.i">
         <router-link
@@ -14,10 +14,18 @@
           <div
             class="CompanyTxO"
             :style="{ backgroundImage: 'url(' + ip + '/' + v.imgUrl + ')' }"
+            @mouseover="selectStyle(v.id)"
+            @mouseleave="cancelStyle"
           >
-            <p class="CnPbt" style="line-height:56px;">{{ v.title }}</p>
-            <p class="EgPbt">SHI XIN WEN CHUANG</p>
-            <li>{{ v.describez }}</li>
+            <p
+              style="line-height:56px;"
+              :class="['CnPbt', isHover === v.id ? 'hoverShow' : 'hoverHide']"
+            >
+              {{ v.title }}
+            </p>
+            <li :class="[isHover === v.id ? 'hoverShow' : 'hoverHide']">
+              {{ v.describez }}
+            </li>
           </div>
         </router-link>
       </div>
@@ -32,6 +40,7 @@ import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
   data() {
     return {
+      isHover: "",
       //轮播配置
       swiperOption: {
         pagination: { el: ".swiper-pagination4" },
@@ -63,6 +72,13 @@ export default {
   methods: {
     reload() {
       window.location.reload();
+    },
+    selectStyle(id) {
+      this.isHover = id;
+      console.log("====", id);
+    },
+    cancelStyle() {
+      this.isHover = "";
     }
   }
 };
@@ -79,8 +95,6 @@ export default {
 .CompanyBt {
   width: 100%;
   height: 90px;
-  position: relative;
-  top: -240px;
 }
 .CompanyBt p {
   text-align: center;
@@ -92,7 +106,6 @@ export default {
   font-weight: bold;
   color: rgba(18, 18, 18, 1);
   line-height: 26px;
-  margin-top: 25px;
   text-align: center;
 }
 .Cnpbta {
@@ -122,8 +135,8 @@ export default {
 }
 .CompanyTxO {
   width: 100%;
-  max-width: 96%;
-  min-width: 96%;
+  width: 96%;
+  margin-left: 2%;
   height: 300px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -133,7 +146,7 @@ export default {
 }
 li {
   width: 90%;
-  text-align: left;
+  text-align: center;
   margin: auto;
   color: aliceblue;
   font-size: 16px;
@@ -151,6 +164,9 @@ li {
 .swiper-slide {
   background-size: 100%;
   background-repeat: no-repeat;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1000;
 }
 .imgLbt {
   width: 100%;
@@ -159,5 +175,11 @@ li {
 .swiper-slide .swiper-slide-duplicate .swiper-slide-duplicate-active {
   min-width: 1440px;
   max-width: 1440px;
+}
+.hoverShow {
+  visibility: visible;
+}
+.hoverHide {
+  visibility: hidden;
 }
 </style>

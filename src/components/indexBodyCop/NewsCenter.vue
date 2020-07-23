@@ -96,7 +96,7 @@ export default {
 }
 .newsCenterImg {
   width: 100%;
-  height: 480px;
+  height: 390px;
 }
 .newsImgMst {
   display: flex;
@@ -115,10 +115,8 @@ export default {
 .newsCenterTest {
   color: #121212;
   font-size: 16px;
-  width: 96%;
+  width: 100%;
   flex-direction: row;
-  position: relative;
-  bottom: 130px;
 }
 .newsTestli {
   width: 65%;
@@ -128,8 +126,6 @@ export default {
   text-align: left;
   padding-left: 15px;
   line-height: 30px;
-  position: relative;
-  top: 35px;
 }
 .newsDatali {
   width: 30%;
@@ -138,8 +134,6 @@ export default {
   padding-right: 10px;
   display: inline-block;
   line-height: 30px;
-  position: relative;
-  top: 35px;
 }
 .scrolling {
   width: 100%;

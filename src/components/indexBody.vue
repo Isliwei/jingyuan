@@ -8,7 +8,7 @@
         <Djdt></Djdt>
       </div>
     </div>
-    <!-- <Company></Company> -->
+    <Company></Company>
     <Service></Service>
   </div>
 </template>

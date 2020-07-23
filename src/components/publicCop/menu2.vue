@@ -2,31 +2,24 @@
   <div>
     <div class="newsSidebarBody">
       <div v-for="(item, index) in bT" :key="item.s" class="newsSiBt">
-        <ul :class="item.ID == m2Id ? 'newsSiBt_click' : ''">
-          <div
-            :class="['menulist_left', isclick == index ? 'newsSiBt_click' : '']"
-            :style="
-              `${
-                item.childList && item.childList.length > 0
-                  ? 'background-color: #fff; color: #000;'
-                  : ''
-              }`
-            "
-            @click="reload(item, index)"
-          >
-            <div>{{ item.ClassName }}</div>
-            <div :class="['cur-icon', isclick == index ? '' : 'cur-black']">
-              &gt;
-            </div>
+        <!-- <ul :class="item.ID == m2Id ? 'newsSiBt_click' : ''"> -->
+        <div
+          :class="['menulist_left', isclick == item.ID ? 'newsSiBt_click' : '']"
+          @click="reload(item, index)"
+        >
+          <div>{{ item.ClassName }}</div>
+          <div :class="['cur-icon', isclick == item.ID ? '' : 'cur-black']">
+            &gt;
           </div>
-          <!-- <router-link
+        </div>
+        <!-- <router-link
             :to="{ name: 'Map', query:{ id:m1,m2:item.ID} }"
             v-for="(cItem, cIndex) in item.childList"
             :key="`${cIndex}-childItem`"
             class="newsSiBt-child"
             @click.native="reload(cItem,index)"
           >{{ cItem.ClassName }}999</router-link> -->
-        </ul>
+        <!-- </ul> -->
       </div>
     </div>
   </div>
@@ -44,7 +37,7 @@ export default {
       bT: [],
       m1: "",
       m2: "",
-      isclick: 0
+      isclick: ""
       // m2Id: ''
     };
   },
@@ -57,12 +50,11 @@ export default {
   },
   created() {
     this.getMenu2();
-    this.isclick = sessionStorage.getItem("menuIndex") || 0;
+    this.isclick = this.$route.query.m2;
   },
   methods: {
     reload(item, index) {
       this.isclick = index;
-      sessionStorage.setItem("menuIndex", index);
       this.$emit("update:m2Id", item.ID);
       if (item.ClassName === "园区地图") {
         var url = ip.ip + "/Index/getParemtNavList";
@@ -209,6 +201,7 @@ a {
   color: aliceblue;
 }
 .newsSiBt_click {
+  box-sizing: border-box;
   background-color: rgb(209, 52, 59);
   color: aliceblue;
 }
